@@ -16,10 +16,9 @@ export class ErrorFilter implements ExceptionFilter {
         errors: exception.getResponse(),
       });
     } else if (exception instanceof ZodError) {
-      const errors = exception.errors.map((err) => ({
-        path: err.path.join('.'),
-        message: err.message,
-      }));
+      const errors = exception.errors.map((err) => 
+        `Path: ${err.path.join('.')}, Message: ${err.message}`
+      ).join('; ');
 
       response.status(400).json({
         errors,
