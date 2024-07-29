@@ -40,8 +40,6 @@ export class LogLoginService {
       throw new HttpException('failed create logging', 400);
     }
 
-    this.logger.info(savedDocument.id);
-
     return true;
   }
 
@@ -65,8 +63,6 @@ export class LogLoginService {
         sort: { loginAt: -1 }, // Urutkan berdasarkan loginAt dalam urutan menurun
       },
     ).exec();
-
-    this.logger.info(result.id);
 
 
     if (!result) {

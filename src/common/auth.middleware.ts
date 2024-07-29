@@ -18,7 +18,7 @@ export class AuthMiddleware implements NestMiddleware {
   async use(req: any, res: any, next: (error?: any) => void) {
     const token = req.headers['x-assist-id-signature'] as string;   
     if (!token) {
-      throw new HttpException('Forbiden yeag', 403);
+      throw new HttpException('Forbiden', 403);
     }
 
 
@@ -33,7 +33,7 @@ export class AuthMiddleware implements NestMiddleware {
     }).exec();
 
     if (!check) {
-      throw new HttpException('Unauthorized 2', 401);
+      throw new HttpException('Unauthorized', 401);
     } else {
       next();
     }
